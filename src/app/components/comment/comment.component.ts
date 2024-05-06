@@ -1,22 +1,26 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { CommentFormComponent } from '../comment-form/comment-form.component';
 
 @Component({
   selector: 'app-comment',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CommentFormComponent],
   templateUrl: './comment.component.html',
-  styleUrl: './comment.component.scss'
+  styleUrl: './comment.component.scss',
 })
 export class CommentComponent {
   isExpanded = false;
   isReplying = false;
 
-  toggleReplying(){
+  toggleReplying() {
     this.isReplying = !this.isReplying;
+    if (this.isReplying) {
+      this.isExpanded = true;
+    }
   }
 
-  toggleExpanded(){
+  toggleExpanded() {
     this.isExpanded = !this.isExpanded;
   }
 }
