@@ -16,7 +16,7 @@ import { CommentFormComponent } from '../components/comment-form/comment-form.co
 export class HomeComponent implements OnInit {
   commentService = inject(CommentService);
   comments = signal<Comment[]>([]);
-  UserService = inject(UserService);
+  userService = inject(UserService);
   ngOnInit(): void {
     this.getComments();
   }
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
 
   createComment(formValues: { text: string }) {
     const { text } = formValues;
-    const user = this.UserService.getUserFromStorage();
+    const user = this.userService.getUserFromStorage();
     if (!user) {
       return;
     }
@@ -41,5 +41,8 @@ export class HomeComponent implements OnInit {
       .subscribe((createdComment) => {
         this.comments.set([createdComment, ...this.comments()]);
       });
+  }
+  commentTrackBy(_index: number, comment: Comment){
+    return comment._id
   }
 }
