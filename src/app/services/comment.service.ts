@@ -4,7 +4,7 @@ import { enviroment } from '../enviroments/enviroment';
 import { Comment } from '../interfaces/comment.interface';
 
 type CreateCommentDto = {
-  patentId?: string;
+  parentId?: string;
   text: string;
   userId: string;
 };
